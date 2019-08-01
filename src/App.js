@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import './TextInput';
+import TextInput from './TextInput';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {};
+  }
+  
+  handleSearch = (e) => {
+    const target = e.target;
+    const value = target.value;
+    const name = target.name
+  
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handleSubmit = (e) => { 
+    e.preventDefault();
+  }
+
+  render() {
+    return (
+      <>
+        <header className='top-bar'>Weirdness Calculator</header>
+        <p>Find out how weird you are by selecting the GIFs that make you
+          laugh. We'll show you the least weird ones to start, but you can
+          move the slider to make them weirder.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        <p>
+          When you find a GIF you like, press the <i>Like</i> button. Once
+          you like 5 GIFs, we'll show you how weird you are.  
+        </p>
+        <TextInput handleSubmit={this.handleSubmit} handleSearch={this.handleSearch} />
+      </>
+    );
+  }
 }
-
 export default App;

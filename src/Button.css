@@ -1,0 +1,9 @@
+.button {
+  height: 30px;
+  display: inline-block;
+  vertical-align: top;
+  color: #fff;
+  background-color: rgb(150, 150, 201);
+  padding: 0 20px;
+  font-weight: 600;
+}
