@@ -5,15 +5,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import RangeInput from './RangeInput';
 import Gif from './Gif';
+import './GIFBox.css'
 
-const GIFBox = ({ loading, title, url  }) => {
+const GIFBox = ({ loading, title, url, handleLike  }) => {
   if(url) {
     return (
       <>
-        <h1>Your Result</h1>
-        <Gif title={title} url={url} />
-        <Button><FontAwesomeIcon icon={faThumbsUp} /></Button>
-        <RangeInput />   
+        <h4>YOUR RESULT</h4>
+        <section className='gif-box'>
+          <Gif title={title} url={url} />
+          <div className='button-wrap'><Button handleClick={handleLike}><FontAwesomeIcon icon={faThumbsUp} /></Button></div>
+          <RangeInput />
+        </section>   
       </>
     )
   }
@@ -22,11 +25,7 @@ const GIFBox = ({ loading, title, url  }) => {
     return <div>loading here...</div>
   }
 
-  return (
-    <>
-    <div>Search above to see some results...weirdo.</div>
-    </>
-    )
+  return null
 }
 
 const mapStateToProps = (state) => {

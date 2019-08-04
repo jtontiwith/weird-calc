@@ -7,7 +7,7 @@ export const fetchGIF = (searchText, range = 0) => dispatch => {
     }
     return res.json()
   }).then(GIF => { 
-    dispatch(fetchGIFSuccess(GIF, searchText));
+    dispatch(fetchGIFSuccess(GIF, searchText, range));
   }).catch(err => {
     dispatch(fetchGIFError(err))
   });
@@ -25,12 +25,13 @@ export const fetchGIFRequest = () => {
 
 
 export const FETCH_GIF_SUCCESS = 'FETCH_GIF_SUCCESS';
-export const fetchGIFSuccess = (GIF, searchText) => {
+export const fetchGIFSuccess = (GIF, searchText, range) => {
   return {
     type: FETCH_GIF_SUCCESS,
     title: GIF.data.title,
-    url: GIF.data.images.preview_gif.url,
-    searchText: searchText
+    url: GIF.data.images.fixed_width.url,
+    searchText: searchText,
+    range: range
   }
 };
 
@@ -41,5 +42,21 @@ export const fetchGIFError = (err) => {
   return {
     type: FETCH_GIF_ERROR
     
+  }
+};
+
+export const LIKE_GIF = 'LIKE_GIF';
+export const likeGIF = () => {
+  return {
+    type: LIKE_GIF
+  }
+};
+
+export const DELETE_GIF = 'DELETE_GIF';
+export const deleteGIF = (index) => {
+  console.log(index)
+  return {
+    type: DELETE_GIF,
+    index
   }
 };

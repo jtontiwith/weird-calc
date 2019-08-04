@@ -8,7 +8,7 @@ const TextInput = ({ handleSubmit, handleSearch, search }) => {
       <label htmlFor="Search Input">
         <input className="base-input" type="text" name="search" value={search} onChange={handleSearch} placeholder="Let's get weird..." />
       </label>
-      <Button handleSubmit={handleSubmit}>SEARCH</Button>
+      <Button handleClick={handleSubmit}>SEARCH</Button>
     </form>
   );
 }

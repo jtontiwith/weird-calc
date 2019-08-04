@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { fetchGIF } from './Actions';
+import './RangeInput.css';
 
 const RangeInput = ({ currentSearch, dispatch }) => {
   const [range, setRange] = useState(0)
@@ -11,9 +12,12 @@ const RangeInput = ({ currentSearch, dispatch }) => {
   }
 
   return (
+    <>
     <form>
-      <input onChange={handleChange} type="range" name="points" min="0" max="10" value={range} />
+      <input className='range-input' onChange={handleChange} type="range" name="points" min="0" max="10" value={range} />
     </form>
+    <div className='weirdness-value'>Weirdness: {range}</div>
+    </>
   )
 }
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import './Button.css';
 
-const Button = ({ handleSubmit, children }) => {
-  return <button className='button' onClick={handleSubmit}>{children}</button>
+const Button = ({ handleClick, children }) => {
+  return <button className='button' onClick={handleClick}>{children}</button>
 }
 
 export default Button;

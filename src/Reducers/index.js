@@ -1,11 +1,11 @@
 import * as actions from '../Actions';
 
 const initialState = {
+  currentSearch: '',
+  searchResult: {},
   allSearchs: [],
   likedGIFs: [],
-  searchResult: {},
-  loading: false,
-  currentSearch: ''
+  loading: false
 }
 
 const appReducer = (state=initialState, action) => {
@@ -13,7 +13,8 @@ const appReducer = (state=initialState, action) => {
     return Object.assign({}, state, {
       searchResult: {
         title: action.title,
-        url: action.url
+        url: action.url,
+        range: action.range
       },
       loading: false,
       currentSearch: action.searchText
@@ -21,6 +22,19 @@ const appReducer = (state=initialState, action) => {
   } else if (action.type === actions.FETCH_GIF_REQUEST) {
     return Object.assign({}, state, {
       loading: action.loading
+    })
+  } else if (action.type === actions.LIKE_GIF) {
+    return Object.assign({}, state, {
+      likedGIFs: [
+        ...state.likedGIFs, { 
+          ...state.searchResult, 
+          fromSearch: state.currentSearch
+        }
+      ]
+    })
+  } else if (action.type === actions.DELETE_GIF) {
+    return Object.assign({}, state, {
+      likedGIFs: state.likedGIFs.filter((gif, index) => index !== action.index)
     })
   }
   return state

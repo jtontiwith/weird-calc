@@ -1,0 +1,21 @@
+.gif-title {
+  margin-bottom: 15px;
+}
+
+.img-container img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+}
+
+.img-container {
+  position: relative;
+  max-width: 150px;
+}
+
+.close-link {
+  position: absolute;
+  right: 5px;
+  top: 0px;
+  color: grey;
+}
