@@ -32,17 +32,15 @@ class Board extends React.Component {
   }
 
   handleLike = () => {
-    console.log(this.props.likedGifsArray)
-    console.log('liking stuff!')
     const { dispatch } = this.props;
     const { search } = this.state;
-    console.log(search)
     for(let i = 0; i < this.props.likedGifsArray.length; i++) {
       if(this.props.likedGifsArray[i].fromSearch === search) {
-        return alert('You alreadly liked it!')
+        return alert(`You only get one liked GIF per search term.`)
       }
     }
     dispatch(likeGIF())
+    alert('Nice like! Search for another.')
   }
 
   handleDelete = (e, index) => {
