@@ -7,11 +7,12 @@ import RangeInput from './RangeInput';
 import Gif from './Gif';
 import './GIFBox.css'
 
-const GIFBox = ({ loading, title, url, handleLike  }) => {
+const GIFBox = ({ loading, error, title, url, handleLike  }) => {
   if(url) {
     return (
       <>
         <h4>YOUR RESULT</h4>
+        { error ? `You've got an error: ${error}` : null }
         <section className='gif-box'>
           <Gif title={title} url={url} />
           <div className='button-wrap'><Button handleClick={handleLike}><FontAwesomeIcon icon={faThumbsUp} /></Button></div>
@@ -33,7 +34,8 @@ const mapStateToProps = (state) => {
   return {
     title: state.searchResult.title,
     url: state.searchResult.url,
-    loading: state.loading
+    loading: state.loading,
+    error: state.error
   }
 }
 

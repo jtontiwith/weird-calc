@@ -15,13 +15,10 @@ export const fetchGIF = (searchText, range = 0) => dispatch => {
 
 
 export const FETCH_GIF_REQUEST = 'FETCH_GIF_REQUEST';
-export const fetchGIFRequest = () => {
-  console.log('inside gif request!')
-  return {
+export const fetchGIFRequest = () => ({
     type: FETCH_GIF_REQUEST,
     loading: 'loading...'
-  }
-};
+});
 
 
 export const FETCH_GIF_SUCCESS = 'FETCH_GIF_SUCCESS';
@@ -40,8 +37,8 @@ export const FETCH_GIF_ERROR = 'FETCH_GIF_ERROR';
 export const fetchGIFError = (err) => {
   console.log('inside gif error!' + err)
   return {
-    type: FETCH_GIF_ERROR
-    
+    type: FETCH_GIF_ERROR,
+    err: err.toString()
   }
 };
 

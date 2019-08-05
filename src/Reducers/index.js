@@ -5,7 +5,8 @@ const initialState = {
   searchResult: {},
   allSearchs: [],
   likedGIFs: [],
-  loading: false
+  loading: false,
+  error: null
 }
 
 const appReducer = (state=initialState, action) => {
@@ -17,6 +18,7 @@ const appReducer = (state=initialState, action) => {
         range: action.range
       },
       loading: false,
+      error: false,
       currentSearch: action.searchText
     })
   } else if (action.type === actions.FETCH_GIF_REQUEST) {
@@ -35,6 +37,11 @@ const appReducer = (state=initialState, action) => {
   } else if (action.type === actions.DELETE_GIF) {
     return Object.assign({}, state, {
       likedGIFs: state.likedGIFs.filter((gif, index) => index !== action.index)
+    })
+  } else if (action.type === actions.FETCH_GIF_ERROR) {
+    return Object.assign({}, state, {
+      error: action.err,
+      loading: false
     })
   }
   return state
