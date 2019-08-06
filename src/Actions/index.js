@@ -10,6 +10,7 @@ export const fetchGIF = (searchText, range = 0) => dispatch => {
     dispatch(fetchGIFSuccess(GIF, searchText, range));
   }).catch(err => {
     dispatch(fetchGIFError(err))
+    dispatch(showNotification(err.toString()));
   });
 };
 
@@ -32,10 +33,16 @@ export const fetchGIFSuccess = (GIF, searchText, range) => {
   }
 };
 
+export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';
+export const showNotification = (notification) => {
+  return {
+    type: SHOW_NOTIFICATION,
+    notification: notification
+  }
+};
 
 export const FETCH_GIF_ERROR = 'FETCH_GIF_ERROR';
 export const fetchGIFError = (err) => {
-  console.log('inside gif error!' + err)
   return {
     type: FETCH_GIF_ERROR,
     err: err.toString()
@@ -57,3 +64,4 @@ export const deleteGIF = (index) => {
     index
   }
 };
+

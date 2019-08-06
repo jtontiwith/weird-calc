@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TextInput from './TextInput';
+import Notifications from './Notifications';
 import GIFBox from './GIFBox';
 import Gif from './Gif';
 import Button from './Button';
-import { fetchGIF, likeGIF, deleteGIF } from './Actions';
+import { fetchGIF, likeGIF, deleteGIF, showNotification } from './Actions';
 import './Board.css';
 import './TextInput';
+
 
 class Board extends React.Component {
   constructor(props) {
@@ -36,11 +38,11 @@ class Board extends React.Component {
     const { search } = this.state;
     for(let i = 0; i < this.props.likedGifsArray.length; i++) {
       if(this.props.likedGifsArray[i].fromSearch === search) {
-        return alert(`You only get one liked GIF per search term.`)
+        return dispatch(showNotification('You only get one liked GIF per search term.'))
       }
     }
     dispatch(likeGIF())
-    alert('Nice like! Search for another.')
+    dispatch(showNotification(`Nice like for term ${search}! Search again.`));
   }
 
   handleDelete = (e, index) => {
@@ -69,6 +71,7 @@ class Board extends React.Component {
             When you find a GIF you like, press the <i>Like</i> button. Once
             you like 5 GIFs, we'll show you how weird you are.  
           </p>
+          <Notifications />
           <TextInput handleSubmit={this.handleSubmit} handleSearch={this.handleSearch} />
           <GIFBox handleLike={this.handleLike} />
           </div>
@@ -93,7 +96,9 @@ class Board extends React.Component {
 const mapStateToProps = (state) => {
   console.log(state)
   return {
-    likedGifsArray: state.likedGIFs
+    likedGifsArray: state.likedGIFs,
+    error: state.error,
+    currentSearch: state.currentSearch
   }
 }
 

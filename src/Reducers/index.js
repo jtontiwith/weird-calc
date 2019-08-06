@@ -6,7 +6,8 @@ const initialState = {
   allSearchs: [],
   likedGIFs: [],
   loading: false,
-  error: null
+  error: null,
+  notification: null
 }
 
 const appReducer = (state=initialState, action) => {
@@ -43,7 +44,12 @@ const appReducer = (state=initialState, action) => {
       error: action.err,
       loading: false
     })
+  } else if (action.type === actions.SHOW_NOTIFICATION) {
+    return Object.assign({}, state, {
+      notification: action.notification
+    })
   }
+
   return state
 }
 

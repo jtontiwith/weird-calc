@@ -7,7 +7,8 @@ import RangeInput from './RangeInput';
 import Gif from './Gif';
 import './GIFBox.css'
 
-const GIFBox = ({ loading, error, title, url, handleLike  }) => {
+
+const GIFBox = ({ loading, error, title, url, handleLike, likedGifsArray  }) => {
   if(url) {
     return (
       <>
@@ -34,8 +35,7 @@ const mapStateToProps = (state) => {
   return {
     title: state.searchResult.title,
     url: state.searchResult.url,
-    loading: state.loading,
-    error: state.error
+    loading: state.loading
   }
 }
 
