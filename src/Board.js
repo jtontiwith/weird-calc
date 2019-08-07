@@ -35,14 +35,14 @@ class Board extends React.Component {
 
   handleLike = () => {
     const { dispatch } = this.props;
-    const { search } = this.state;
-    for(let i = 0; i < this.props.likedGifsArray.length; i++) {
-      if(this.props.likedGifsArray[i].fromSearch === search) {
+    const { likedGifsArray, searchResult } = this.props;
+    for(let i = 0; i < likedGifsArray.length; i++) {
+      if(likedGifsArray[i].fromSearch === searchResult.fromSearch) {
         return dispatch(showNotification('You only get one liked GIF per search term.'))
       }
     }
     dispatch(likeGIF())
-    dispatch(showNotification(`Nice like for term ${search}! Search again.`));
+    dispatch(showNotification(`Nice like for term ${searchResult.fromSearch}! Search again.`));
   }
 
   handleDelete = (e, index) => {
@@ -52,7 +52,12 @@ class Board extends React.Component {
   }
   
   handleRedirect = () => {
-    this.props.history.push('/results')
+    const { dispatch, history, likedGifsArray } = this.props;
+    if(likedGifsArray.length > 2) {
+      history.push('/results');
+    }
+    const remainingGIFs = 5 - likedGifsArray.length;
+    dispatch(showNotification(`You still have ${remainingGIFs} GIFs to choose.`));
   }
 
 
@@ -97,8 +102,7 @@ const mapStateToProps = (state) => {
   console.log(state)
   return {
     likedGifsArray: state.likedGIFs,
-    error: state.error,
-    currentSearch: state.currentSearch
+    searchResult: state.searchResult
   }
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Gif from './Gif';
-import { faGrimace } from '@fortawesome/free-solid-svg-icons';
+import './Results.css';
 
 const Results = ({ likedGifsArray }) => {
   const likedGIFs = likedGifsArray.map((gif, index) => <Gif key={index} title={gif.title} url={gif.url} index={index} /> ) 
@@ -11,12 +11,11 @@ const Results = ({ likedGifsArray }) => {
     for(let i = 0; i < likedGifsArray.length; i++) {
       cumulativeWeirdness += parseInt(likedGifsArray[i].range, 10)
     }
-    
   }
-  console.log(cumulativeWeirdness)
+
   return (
     <>  
-      <div>{likedGIFs}</div>
+      <div className='liked-gif-results'>{likedGIFs}</div>
       <div>You scored an {cumulativeWeirdness / likedGifsArray.length} out of 10 on the weirdness scale.</div>
     </>
   ) 

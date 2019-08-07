@@ -1,0 +1,4 @@
+.liked-gif-results {
+  display: flex;
+  flex-direction: row;
+}

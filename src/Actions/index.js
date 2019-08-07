@@ -37,7 +37,8 @@ export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';
 export const showNotification = (notification) => {
   return {
     type: SHOW_NOTIFICATION,
-    notification: notification
+    notification: notification,
+    time: Date.now()
   }
 };
 

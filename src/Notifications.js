@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-const Notifications = ({ notification }) => {
-  const [visibility, setVisibility] = useState();
+const Notifications = ({ notification, likedGifsArray, time }) => {
+  const [visibility, setVisibility] = useState(true);
   
   useEffect(() => {
     setVisibility(true)
-  }, [notification])
+  }, [notification, likedGifsArray.length, time])
 
   if(visibility && notification) {
     setTimeout(() => setVisibility(false), 3000)
@@ -17,7 +17,9 @@ const Notifications = ({ notification }) => {
 }
 
 const mapStateToProps = (state) => ({
-  notification: state.notification
+  notification: state.notification,
+  likedGifsArray: state.likedGIFs,
+  time: state.time
 })
 
 export default connect(mapStateToProps)(Notifications);

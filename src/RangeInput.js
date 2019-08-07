@@ -13,10 +13,10 @@ const RangeInput = ({ currentSearch, dispatch }) => {
 
   return (
     <>
-    <form>
-      <input className='range-input' onChange={handleChange} type="range" name="points" min="0" max="10" value={range} />
-    </form>
-    <div className='weirdness-value'>Weirdness: {range}</div>
+      <form>
+        <input className='range-input' onChange={handleChange} type="range" name="points" min="0" max="10" value={range} />
+      </form>
+      <div className='weirdness-value'>Weirdness: {range}</div>
     </>
   )
 }
