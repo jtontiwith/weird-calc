@@ -18,7 +18,7 @@ Overall it's written in a style consistent with modern React. I use mostly funct
 
 Additionally, I made components like `Button.js` reuseable, and used it a few times in different places.<br>
 
-One shortcomming might be that I could have made the components even more reusable by using a more advanced convention for styling them (even though doing so was deemphasized for this test). Another shortcomming may be the way in which I made `Gif.js` reuseable for both ways in which GIFs appear (under YOUR RESULT and YOUR LIKED GIFS). I did it based on a conditional render and put the `handleDelete` handler in an `href` instead of reusing `Button.js`. There's probably a cleaner way to get that done. Finally, for the sake of time I just used `alerts` to prompt the user instead of writing a notifications component.   
+One shortcomming might be that I could have made the components even more reusable by using a more advanced convention for styling them (even though doing so was deemphasized for this test). Another shortcomming may be the way in which I made `Gif.js` reuseable for both ways in which GIFs appear (under YOUR RESULT and YOUR LIKED GIFS). I did it based on a conditional render and put the `handleDelete` handler in an `href` instead of reusing `Button.js`. There's probably a cleaner way to get that done.
 
 
 
